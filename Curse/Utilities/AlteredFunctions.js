@@ -306,6 +306,17 @@ function InitAlteredFns() {
     };
   }
 
+  // Special vibrator modes disabled with cursed orgasms
+  if (window.VibratorModeScriptDraw) {
+    let backupVibratorModeScriptDraw = VibratorModeScriptDraw;
+    VibratorModeScriptDraw = function (...rest) {
+      if (cursedConfig.isRunning && cursedConfig.hasCursedOrgasm) {
+        return;
+      }
+      backupVibratorModeScriptDraw(...rest);
+    };
+  }
+  
   // DeafImmune
   if (window.SpeechGarble) {
     let backupSpeechGarble = SpeechGarble;
@@ -342,6 +353,18 @@ function InitAlteredFns() {
       }
       DrawCustomBeepText(GT(Player.MemberNumber, { Tag: "AsylumLockdownActive" }));
       backupAsylumBedroomLoad(...rest);
+    };
+  }
+  
+  // Garbled whispers
+  
+  if (window.ChatRoomTarget) {
+    let backupChatRoomTarget = ChatRoomTarget;
+    ChatRoomTarget = function (...rest) {
+      backupChatRoomTarget(...rest);
+      if (cursedConfig.isRunning && cursedConfig.garbledNames && ChatRoomTargetMemberNumber && Array.isArray(Player.Effect) && Player.IsBlind()) {
+        document.getElementById("InputChat").placeholder = TextGet("WhisperTo") + " ???";
+      }
     };
   }
 }
