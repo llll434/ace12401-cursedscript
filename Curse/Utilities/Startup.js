@@ -5,10 +5,10 @@ function InitStartup() {
   
   //Resets Strikes when it has been a week
   if (cursedConfig.strikeStartTime + 604800000 < Date.now()) {
-      popChatSilent({ Tag: "WeeklyReset" }, "System");
-      cursedConfig.strikeStartTime = Date.now();
-      cursedConfig.strikes = 0;
-      cursedConfig.lastPunishmentAmount = 0;
+    popChatSilent({ Tag: "WeeklyReset" }, "System");
+    cursedConfig.strikeStartTime = Date.now();
+    cursedConfig.strikes = 0;
+    cursedConfig.lastPunishmentAmount = 0;
   }
 
   //Enables the hidden curse item to display who has the curse
@@ -103,7 +103,7 @@ function InitCleanup() {
         case "hasCursedGag":
           toggleCurseItem({ name: "BallGag", group: "ItemMouth", forceAdd: true });
           break;
-       /* case "hasCursedMittens":
+          /* case "hasCursedMittens":
           toggleCurseItem({ name: "LeatherMittens", group: "ItemHands", forceAdd: true });
           break;*/
         case "hasCursedPaws":

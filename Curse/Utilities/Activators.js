@@ -202,8 +202,8 @@ function textToGroup(group, permission) {
         return "Shoes";
       case "hat":
         return "Hat";
-        case "mask":
-          return "Mask";
+      case "mask":
+        return "Mask";
       case "gloves":
         return "Gloves";
       case "glasses":

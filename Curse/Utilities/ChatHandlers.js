@@ -34,13 +34,13 @@ function popChatGlobal(actionTxt, isNormalTalk) {
     if (isNormalTalk) {
       ServerSend("ChatRoomChat", { Content: actionTxt, Type: "Chat" });
     } else {
-      var msgFR = actionTxt;
-      var msgEN = actionTxt;
-      var msgGER = actionTxt;
+      let msgFR = actionTxt;
+      let msgEN = actionTxt;
+      let msgGER = actionTxt;
       //var msgRU = actionTxt;
       if (typeof actionTxt == "object") { 
-       // _.setTranslation({ ...cursedEN, ...cursedRU });
-       // msgRU = CT(actionTxt);
+        // _.setTranslation({ ...cursedEN, ...cursedRU });
+        // msgRU = CT(actionTxt);
         _.setTranslation({ ...cursedEN, ...cursedGER });
         msgGER = CT(actionTxt);
         _.setTranslation({ ...cursedEN, ...cursedFR });

@@ -61,7 +61,7 @@ function MistressCommands({ command, sender, parameters, isOwner, isClubOwner })
       toggleCurseItem({ name: "HeavyDutyEarPlugs", group: "ItemEars" });
       break;
     case "hood":
-      sendWhisper(sender, { Tag: "MistressOldCommandCurseItem" }, true)
+      sendWhisper(sender, { Tag: "MistressOldCommandCurseItem" }, true);
       break;
     case "blindfold":
       toggleCurseItem({ name: "FullBlindfold", group: "ItemHead" });

@@ -17,7 +17,7 @@ function PunishmentCheck() {
   if (difference > stageFactor && !cursedConfig.punishmentsDisabled) {
     //More restraints per stages, resets every week
     cursedConfig.punishmentRestraints.forEach(PR => { 
-        r = WearPunishment(PR.stage, PR.name, PR.group) || r;
+      r = WearPunishment(PR.stage, PR.name, PR.group) || r;
     });
     if (r) {
       TryPopTip(41);

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ace-1331/ace12401-cursedscript/issues"
   },
-  "homepage": "https://github.com/ace-1331/ace12401-cursedscript#readme"
+  "homepage": "https://github.com/ace-1331/ace12401-cursedscript#readme",
+  "dependencies": {
+    "eslint": "^7.15.0"
+  }
 }

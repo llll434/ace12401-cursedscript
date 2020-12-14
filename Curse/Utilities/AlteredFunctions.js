@@ -5,7 +5,7 @@ function InitAlteredFns() {
   if (cursedConfig.hasCommandsV2) {
     LoadCommandsV2();
   }
-  
+
   // Sends a message to the server. (Chatblock)
   ServerSend = function (Message, Data) {
     let isActivated = !(cursedConfig.mistressIsHere && cursedConfig.disaledOnMistress)
@@ -206,7 +206,7 @@ function InitAlteredFns() {
       return Player.isSlowBackup(...rest);
     };
   }
-  
+
   // Prevent leaving a room
   if (Player.CanWalk) {
     Player.walkBackup = Player.CanWalk;
@@ -223,14 +223,14 @@ function InitAlteredFns() {
     let isActivated = cursedConfig.isRunning && ChatRoomSpace != "LARP";
     let isTriggered = cursedConfig.triggerWord.lastTrigger + cursedConfig.triggerWord.triggerDuration > Date.now();
     return Player.interactBackup() && (!isActivated || !isTriggered);
-  }
-  
+  };
+
   Player.kneelBackup = Player.CanKneel;
   Player.CanKneel = function () {
     let isActivated = cursedConfig.isRunning && ChatRoomSpace != "LARP";
     let isTriggered = cursedConfig.triggerWord.lastTrigger + cursedConfig.triggerWord.triggerDuration > Date.now();
     return Player.kneelBackup() && (!isActivated || !isTriggered);
-  }
+  };
 
   // Prevent changing
   Player.changeBackup = Player.CanChange;
@@ -238,7 +238,7 @@ function InitAlteredFns() {
     let isActivated = cursedConfig.isRunning && ChatRoomSpace != "LARP";
     let isTriggered = cursedConfig.triggerWord.lastTrigger + cursedConfig.triggerWord.triggerDuration > Date.now();
     return Player.changeBackup() && (!isActivated || !isTriggered);
-  }
+  };
 
   // Block new lovers
   if (window.ChatRoomLovershipOptionIs) {
@@ -270,14 +270,14 @@ function InitAlteredFns() {
     ChatRoomDrawCharacter = function (...rest) {
       backupChatRoomDrawCharacter(...rest);
       // Determine the horizontal & vertical position and zoom levels to fit all characters evenly in the room
-      var Space = ChatRoomCharacter.length >= 2 ? 1000 / Math.min(ChatRoomCharacter.length, 5) : 500;
-      var Zoom = ChatRoomCharacter.length >= 3 ? Space / 400 : 1;
-      var X = ChatRoomCharacter.length >= 3 ? (Space - 500 * Zoom) / 2 : 0;
-      var Y = ChatRoomCharacter.length <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
-      
+      let Space = ChatRoomCharacter.length >= 2 ? 1000 / Math.min(ChatRoomCharacter.length, 5) : 500;
+      let Zoom = ChatRoomCharacter.length >= 3 ? Space / 400 : 1;
+      let X = ChatRoomCharacter.length >= 3 ? (Space - 500 * Zoom) / 2 : 0;
+      let Y = ChatRoomCharacter.length <= 5 ? 1000 * (1 - Zoom) / 2 : 0;
+
       for (let C = 0; C < ChatRoomCharacter.length; C++) {
-        var CharX = X + (C % 5) * Space;
-        var CharY = Y + Math.floor(C / 5) * 500;
+        let CharX = X + (C % 5) * Space;
+        let CharY = Y + Math.floor(C / 5) * 500;
         if (!cursedConfig.hasHiddenDisplay && ChatRoomCharacter[C].MemberNumber != Player.MemberNumber) {
           if (
             ChatRoomCharacter[C].MemberNumber != null
@@ -316,7 +316,7 @@ function InitAlteredFns() {
       backupVibratorModeScriptDraw(...rest);
     };
   }
-  
+
   // DeafImmune
   if (window.SpeechGarble) {
     let backupSpeechGarble = SpeechGarble;
@@ -326,7 +326,7 @@ function InitAlteredFns() {
       if (cursedConfig.isRunning && ChatRoomSpace != "LARP" && cursedConfig.deafImmune.find(MN => rest[0].MemberNumber == MN)) {
         Player.GetDeafLevel = () => 0;
       }
-      var garbledSpeech = backupSpeechGarble(...rest);
+      let garbledSpeech = backupSpeechGarble(...rest);
 
       Player.GetDeafLevel = Player.backupDefLevel;
       return garbledSpeech;
@@ -355,9 +355,9 @@ function InitAlteredFns() {
       backupAsylumBedroomLoad(...rest);
     };
   }
-  
+
   // Garbled whispers
-  
+
   if (window.ChatRoomTarget) {
     let backupChatRoomTarget = ChatRoomTarget;
     ChatRoomTarget = function (...rest) {
@@ -371,26 +371,26 @@ function InitAlteredFns() {
 
 /** Altered functions that do *NOT* require cursedConfig */
 function InitBasedFns() {
-  //Custom Room 
-  if (window.MainHallRun) {
-    let backupMainHallRun = MainHallRun;
-    MainHallRun = (...rest) => {
+  //Custom Room
+  if (window.PreferenceRun) {
+    let backupPreferenceRun = PreferenceRun;
+
+    PreferenceRun = (...rest) => {
       DrawButton(45, 665, 90, 90, "", "White", "Icons/Question.png", "Bunny hole?");
-      backupMainHallRun(...rest);
+      backupPreferenceRun(...rest);
     };
   }
 
-  if (window.MainHallClick) {
-    let backupMainHallClick = MainHallClick;
-    MainHallClick = (...rest) => {
+  if (window.PreferenceClick) {
+    let backupPreferenceClick = PreferenceClick;
+    PreferenceClick = (...rest) => {
       if (MouseIn(45, 665, 135 - 45, 755 - 665)) {
-        CurrentScreen = "CurseRoom";
-        CurseRoomRun();
+        CurseRoomCursedInfo();
       }
-      backupMainHallClick(...rest);
+      backupPreferenceClick(...rest);
     };
   }
-  
+
   // Cell timer remove validation
   if (window.CellLoad) {
     CellLoad = () => {
@@ -403,7 +403,7 @@ function InitBasedFns() {
         LogDelete("Locked", "Cell");
         CellOpenTimer = 0;
       }
-    }
+    };
   }
 }
 InitBasedFns();

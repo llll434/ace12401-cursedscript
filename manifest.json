@@ -24,7 +24,7 @@
                 "http://www.bondageprojects.elementfx.com/*"
             ],
             "all_frames": true,
-            "js": [ 
+            "js": [
                 "Curse/MainCurse.js",
                 "Curse/Checks/SelfMessageCheck.js",
                 "Curse/Checks/MessageCheck.js",

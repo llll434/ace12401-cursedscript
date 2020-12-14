@@ -518,7 +518,7 @@ function ConvertStringToStringNumberArray(string) {
 
 /** Draws a beep text */
 function DrawCustomBeepText(txt) {
-  ServerBeep = { Message: txt, Timer: Date.now() + 10000 }
+  ServerBeep = { Message: txt, Timer: Date.now() + 10000 };
 }
 
 /** Sends a hidden message object */
@@ -536,5 +536,5 @@ function SendCurseChatMessage(number, txt) {
  * @returns {boolean} - Returns TRUE if the click occurred in the given zone
  */
 function MouseIn(Left, Top, Width, Height) {
-	return (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height);
+  return (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height);
 }
