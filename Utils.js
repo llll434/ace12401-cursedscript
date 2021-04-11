@@ -1,8 +1,8 @@
 //************************************Callbacks************************************
 
 //Boot up sequence
-window.currentManifestVersion = "1.2.8.6";
-window.currentVersion = 56;
+window.currentManifestVersion = "1.2.8.8";
+window.currentVersion = 57;
 let AlwaysOn;
 let isLoaded;
 
@@ -233,6 +233,6 @@ async function CheckVersion(link) {
   } catch (err) {
     //If first origin fails, we try again
     console.log("Could not verify curse version: " + err);
-    if(!link) CheckVersion("https://cors-anywhere.herokuapp.com/https://condescending-pare-1bf422.netlify.app/curseVersion.json");
+    if(!link) CheckVersion("https://ace-1331.github.io/ace12401-cursedscript/curseVersion.json");
   }
 }
